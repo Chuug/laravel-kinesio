@@ -14,9 +14,11 @@
 <body class="bg-light">
 
    @include('components.nav')
-
-   @yield('content')
    
+   <main id="main">
+      @yield('content')
+   </main>
+    
    <script src="/js/bootstrap.bundle.min.js"></script>
    <script src="/js/aos.js"></script>
 
