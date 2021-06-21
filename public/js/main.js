@@ -96,3 +96,6 @@ window.addEventListener('load', () => {
       scrollto(this.hash)
    }
    }, true)
+
+
+

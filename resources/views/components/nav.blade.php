@@ -10,15 +10,27 @@
          </button>
          <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-               <a href="#hero" class="nav-link mx-2 scrollto">Accueil</a>
-               <a href="#about" class="nav-link mx-2 scrollto">Qui sommes-nous</a>
-               <a href="#services" class="nav-link mx-2 scrollto">Traitements</a>
-               <a href="#team" class="nav-link mx-2 scrollto">équipe</a>
-               <a href="#contact" class="nav-link mx-2 scrollto">Contact</a>
+               <a href="{{ route('index')}}#hero" class="nav-link mx-2 scrollto">Accueil</a>
+               <a href="{{ route('index')}}#about" class="nav-link mx-2 scrollto">Qui sommes-nous</a>
+               <a href="{{ route('index')}}#services" class="nav-link mx-2 scrollto">Traitements</a>
+               <a href="{{ route('index')}}#team" class="nav-link mx-2 scrollto">équipe</a>
+               <a href="{{ route('index')}}#contact" class="nav-link mx-2 scrollto">Contact</a>
             </div>
          </div>
+         @if(Auth::user())
          <span class="me-2">Bonjour, {{ Auth::user()->prenom }}</span>
-         <button class="btn btn-info text-white">Prendre rendez-vous</button>
+         <a href="{{ route('user.backoffice') }}" class="btn btn-info text-white me-1"><i class="fas fa-th-list fa-fw"></i></a>
+         <form action="{{ route('logout') }}" method="POST">
+            @csrf
+            <button type="submit" class="btn btn-info btn-sm text-white me-1"><i class="fas fa-sign-out-alt fa-fw"></i></button>
+         </form> 
+         
+         @else
+         <a href="{{ route('connexion') }}" class="btn btn-info text-white me-1"><i class="fas fa-sign-in-alt fa-fw"></i></a>
+         @endif
+         @if(!Auth::user() || Auth::user()->role === 1)
+         <a href="{{ route('appointment') }}" class="btn btn-info text-white">Prendre rendez-vous</a>
+         @endif
       </div>
    </nav>
 </header>

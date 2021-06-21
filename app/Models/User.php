@@ -41,4 +41,12 @@ class User extends Authenticatable
    protected $casts = [
       'email_verified_at' => 'datetime',
    ];
+
+   public static function getTeam() {
+      return User::all()->where('role','>',1);
+   }
+
+   public static function getUser($id) {
+      return User::find($id);
+   }
 }
