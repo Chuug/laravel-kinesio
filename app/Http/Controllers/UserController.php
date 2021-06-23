@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Message;
 
 class UserController extends Controller
 {
@@ -17,6 +18,23 @@ class UserController extends Controller
 
    public function store(Request $request)
    {
+      $rules = [
+         'prenom' => ['required'],
+         'nom' => ['required'],
+         'email' => ['required', 'email'],
+         'password' => ['required']
+      ];
+
+      $messages = [
+         'prenom.required' => 'Veuillez entrer votre prénom',
+         'nom.required' => 'Veuillez entrer votre nom',
+         'email.required' => 'Veuillez entrer votre email',
+         'email.email' => "Cet email n'est pas valide",
+         'password.required' => "Veuillez entre un mot de passe"
+      ];
+
+      $this->validate($request, $rules, $messages);
+
       $user = User::create([
          'nom' => $request->nom,
          'prenom' => $request->prenom,
@@ -97,6 +115,7 @@ class UserController extends Controller
       $user->nom = $request->nom;
       $user->prenom = $request->prenom;
       $user->email = $request->email;
+      $user->password = Hash::make(substr(sha1($request->email), 0, 10));
       $user->role = 2;
       $user->specs = $specs;
 
@@ -109,11 +128,14 @@ class UserController extends Controller
       
       if(Auth::user() && Auth::user()->can('backoffice', User::class)) {
          $team = null;
+         $messages = null;
          if(Auth::user()->role === 3) {
             $team = User::getTeam();
+            $messages = Message::all()->sortBy('created_at');
          }
          return view('user.backoffice', [
-            'team' => $team
+            'team' => $team,
+            'messages' => $messages
          ]);
       } else {
          abort(403);
@@ -155,11 +177,5 @@ class UserController extends Controller
          return redirect()->route('user.backoffice');
    }
 }
-
-il s'est mmis mal
-il fait dodo
-cest mieux de te prevenir pour pas tkter
-je le laisse dormir ?
-reveil a quelle heure ?mdp
 
 

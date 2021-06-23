@@ -175,7 +175,7 @@ section {
 }
 
 .contact .form {
-   height: 352px;
+   min-height: 352px;
 }
 
 .contact .info-box p {
@@ -198,4 +198,10 @@ section {
 
 .btn-outline-info:hover {
    color: white;
+}
+
+.datepicker {
+   position: relative;
+   top: -400px !important;
+   width: 200px;
 }

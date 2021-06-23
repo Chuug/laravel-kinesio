@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Gate;
 
 use App\Models\User;
 use App\Policies\UserPolicy;
+use App\Models\Appointment;
+use App\Policies\AppointmentPolicy;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -16,7 +18,8 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        User::class => UserPolicy::class
+        User::class => UserPolicy::class,
+        Appointment::class => AppointmentPolicy::class
     ];
 
     /**

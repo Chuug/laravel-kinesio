@@ -18,6 +18,8 @@ use App\Http\Controllers\ApiController;
 */
 
 Route::get('/', [AppController::class, 'index'])->name('index');
+Route::post('/send-message', [AppController::class, 'sendMessage'])->name('app.sendMessage');
+Route::delete('/app/destroy-message/{id}', [AppController::class, 'destroyMessage'])->name('app.destroyMessage');
 
 Route::get('/inscription', [UserController::class, 'register'])->name('register');
 Route::get('/connexion', [UserController::class, 'connexion'])->name('connexion');
@@ -31,6 +33,11 @@ Route::get('/calendrier/{id}', [UserController::class, 'calendar'])->name('user.
 Route::get('/modifier/{id}', [UserController::class, 'edit'])->name('user.edit');
 Route::patch('/user/update/{id}', [UserController::class, 'update'])->name('user.update');
 
-Route::get('/rendez-vous', [AppointmentController::class, 'create'])->name('appointment');
+Route::get('/nouveau-rendez-vous', [AppointmentController::class, 'create'])->name('app.create');
+Route::post('/app/store', [AppointmentController::class, 'store'])->name('app.store');
+Route::get('/mes-rendez-vous', [AppointmentController::class, 'index'])->name('app.index');
+Route::delete('/app/destroy/{id}', [AppointmentController::class, 'destroy'])->name('app.destroy');
 
 Route::get('/api/get-user/{id}', [ApiController::class, 'getUser'])->name('api.getUser');
+Route::get('/api/get-app/{day}/{month}/{year}/{id}', [ApiController::class, 'getApp'])->name('api.getApp');
+Route::get('/api/get-app-kine/{id}', [ApiController::class, 'getAppKine'])->name('api.getAppKine');

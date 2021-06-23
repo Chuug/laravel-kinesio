@@ -8,7 +8,7 @@
          <div class="col-8 offset-2 hero-frame p-4 text-center">
             <h2>Bienvenue chez Kinesio</h2>
             <p>
-               Ut velit est quam dolor ad a aliquid qui aliquid. Sequi ea ut et est quaerat sequi nihil ut aliquam. Occaecati alias dolorem mollitia ut. Similique ea voluptatem. Esse doloremque accusamus repellendus deleniti vel.
+               Kinesio réunit une équipe pluridisciplinaire et se met à votre disposition pour répondre au mieux aux besoins de chaque patients.
             </p>
             <a href="#" class="btn btn-info fw-bold text-white">Plus d'infos</a>
          </div>
@@ -167,46 +167,18 @@
             <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
          </div>
          <div class="row gx-3">
+            @foreach ($team as $member)
             <div class="col-3">
                <div class="member bg-white shadow-sm p-0" data-aos="fade-up">
                   <div class="member-img">
                      <img src="/img/team/doctors-1.jpg" alt="Walter White" class="img-fluid">
                   </div>
                   <div class="member-info p-3 text-center">
-                     <span class="h5 fw-bold">Swag</span>
+                     <span class="h5 fw-bold">{{ $member->prenom }} <span class="text-uppercase">{{ $member->nom }}</span></span>
                   </div>
                </div>
-            </div>
-            <div class="col-3">
-               <div class="member bg-white shadow-sm p-0" data-aos="fade-up" data-aos-delay="300">
-                  <div class="member-img">
-                     <img src="/img/team/doctors-1.jpg" alt="Walter White" class="img-fluid">
-                  </div>
-                  <div class="member-info p-3 text-center">
-                     <span class="h5 fw-bold">Swag</span>
-                  </div>
-               </div>
-            </div>
-            <div class="col-3">
-               <div class="member bg-white shadow-sm p-0" data-aos="fade-up" data-aos-delay="600">
-                  <div class="member-img">
-                     <img src="/img/team/doctors-1.jpg" alt="Walter White" class="img-fluid">
-                  </div>
-                  <div class="member-info p-3 text-center">
-                     <span class="h5 fw-bold">Swag</span>
-                  </div>
-               </div>
-            </div>
-            <div class="col-3">
-               <div class="member bg-white shadow-sm p-0" data-aos="fade-up" data-aos-delay="900">
-                  <div class="member-img">
-                     <img src="/img/team/doctors-1.jpg" alt="Walter White" class="img-fluid">
-                  </div>
-                  <div class="member-info p-3 text-center">
-                     <span class="h5 fw-bold">Swag</span>
-                  </div>
-               </div>
-            </div>
+            </div>                
+            @endforeach
          </div>
       </div>
    </section>
@@ -251,20 +223,33 @@
                   </div>
                </div>
             </div>
-            <div class="col-6 mt-5" data-aos="fade-left">
+            <div class="col-6 mt-5" data-aos="fade-left" id="message">
                <div class="info-box form">
-                  <form>
+                  <form action="{{ route('app.sendMessage') }}#message" method="POST">
+                     @csrf
                      <div class="row">
                         <div class="col-6">
-                           <input type="text" placeholder="Votre nom" class="form-control">
+                           <input type="text" placeholder="Votre nom" class="form-control" name="nom">
+                           @error('nom')
+                              <span class="text-danger mt-2">{{ $message }}</span>
+                           @enderror
                         </div>
                         <div class="col-6">
-                           <input type="text" placeholder="Votre email" class="form-control">
+                           <input type="text" placeholder="Votre email" class="form-control" name="email">
+                           @error('email')
+                           <span class="text-danger mt-2">{{ $message }}</span>
+                           @enderror
                         </div>
                      </div>
-                     <input type="text" placeholder="Sujet" class="form-control mt-3">
-                     <textarea placeholder="Message" class="form-control mt-3" rows="5"></textarea>
-                     <button type="submit" class="btn btn-info text-white mt-3">Envoyer</button>
+                     <input type="text" placeholder="Sujet" class="form-control mt-3" name="sujet">
+                     @error('sujet')
+                     <span class="text-danger mt-2">{{ $message }}</span>
+                     @enderror
+                     <textarea placeholder="Message" class="form-control mt-3" rows="5" name="message"></textarea>
+                     @error('message')
+                     <span class="text-danger mt-2">{{ $message }}</span>
+                     @enderror
+                     <button type="submit" class="btn btn-info d-block text-white mt-3">Envoyer</button>
                   </form>
                </div>
             </div>

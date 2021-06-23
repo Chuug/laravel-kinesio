@@ -13,8 +13,11 @@
             @error('password')
                <div class="text-danger">{{ $message }}</span>
             @enderror
-            <button class="btn btn-info text-white mt-2 float-start" type="submit">Connexion</button>
-            <a href="{{ route('register') }}" class="mt-3 float-end">M'inscrire</a>
+            <div class="d-block">
+               <button class="btn btn-info text-white mt-2 float-start" type="submit">Connexion</button>
+               <a href="{{ route('register') }}" class="mt-3 float-end">M'inscrire</a>
+            </div>
+
          </form>
       </div>
    </div>
