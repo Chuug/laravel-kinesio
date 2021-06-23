@@ -49,7 +49,7 @@
       <div class="container">
          <div class="section-title" data-aos="fade-down">
             <h2>Qui sommes-nous</h2>
-            <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+            <p>La clinique Kinesio est l'une des plus grandes et des plus anciennes clinique de Kinésithérapeute dans la région de Namur</p>
          </div>
 
          <div class="row">
@@ -57,20 +57,20 @@
                <img src="/img/building.jpg" class="building" alt="">
             </div>
             <div class="col-lg-6" data-aos="fade-left">
-               <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
-               <p class="fst-italic">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                  magna aliqua.
+               <p>
+                  Nous somme spécialisé dans le dos, le cou, les douleurs aux épaules, les maux de tête et les migraines.
                </p>
-               <ul>
-                  <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                  <li><i class="bi bi-check-circle"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                  <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
+               <p>
+                  Nos traitements se déroulent dans un cadre confortable, convivial et professionnel, et ce, dans une installation moderne.
+               </p>
+               <p class="fw-bold">Cela inclut:</p>
+               <ul style="list-style-type:none">
+                  <li><i class="far fa-dot-circle"></i> Conseillère spécialisée en soulagement de la douleur</li>
+                  <li><i class="far fa-dot-circle"></i> Accès à des traitements médicaux spécialisés</li>
+                  <li><i class="far fa-dot-circle"></i> Parking gratuit</li>
                </ul>
                <p>
-                  Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                  velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                  culpa qui officia deserunt mollit anim id est laborum
+                  Nos kinésithérapeutes s'appuient sur des années d'expérience et travaillent selon les normes professionnelles les plus élevées.
                </p>
                </div>
          </div>
@@ -82,7 +82,7 @@
       <div class="container">
          <div class="section-title" data-aos="fade-down">
             <h2>Nos traitements</h2>
-            <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+            <p>Chez Kinesio, nous sommes très fier de fournir un large panel de soins kinésithérapeutiques que nous détaillons ci-dessous. N'hésitez pas à nous appeler au <span class="fw-bold">+32 494 60 76 70</span> pour plus d'informations</p>
          </div>
          <div class="row gx-3">
             <div class="col-lg-4 col-md-6 mb-3" data-aos="fade-up">
@@ -164,7 +164,6 @@
       <div class="container">
          <div class="section-title" data-aos="fade-down">
             <h2>L'équipe</h2>
-            <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
          </div>
          <div class="row gx-3">
             @foreach ($team as $member)
@@ -174,7 +173,7 @@
                      <img src="/img/team/doctors-1.jpg" alt="Walter White" class="img-fluid">
                   </div>
                   <div class="member-info p-3 text-center">
-                     <span class="h5 fw-bold">{{ $member->prenom }} <span class="text-uppercase">{{ $member->nom }}</span></span>
+                     <a href="{{ route('app.team', $member->id) }}" class="h5 fw-bold text-decoration-none" style="color:black !important">{{ $member->prenom }} <span class="text-uppercase">{{ $member->nom }}</span></a>
                   </div>
                </div>
             </div>                
@@ -188,7 +187,7 @@
       <div class="container" data-aos="fade-down">
          <div class="section-title">
             <h2>Contact</h2>
-            <p>Magnam dolores commodi suscipit. Necessitatibus eius consequatur ex aliquid fuga eum quidem. Sit sint consectetur velit. Quisquam quos quisquam cupiditate. Et nemo qui impedit suscipit alias ea. Quia fugiat sit in iste officiis commodi quidem hic quas.</p>
+            <p>Nous sommes localisé dans le centre de Namur au dessus du Burger King. Le parking y est gratuit pour tous les clients de chez Kinesio.</p>
          </div>
       </div>
 
@@ -256,4 +255,7 @@
          </div>
       </div>
    </section>
+   <footer class="bg-white shadow p-4 text-center">
+      © Copyright Kinesio. Tous droits réservés
+   </footer>
 @endsection

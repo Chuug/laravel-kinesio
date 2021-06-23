@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Validator;
 use App\Models\Message;
+use App\Http\Helpers\Helpers;
 
 class UserController extends Controller
 {
@@ -115,7 +116,8 @@ class UserController extends Controller
       $user->nom = $request->nom;
       $user->prenom = $request->prenom;
       $user->email = $request->email;
-      $user->password = Hash::make(substr(sha1($request->email), 0, 10));
+      $pw = substr(sha1($request->email), 0, 10);
+      $user->password = Hash::make($pw);
       $user->role = 2;
       $user->specs = $specs;
 
@@ -127,6 +129,7 @@ class UserController extends Controller
    {
       
       if(Auth::user() && Auth::user()->can('backoffice', User::class)) {
+         $services = Helpers::getServices();
          $team = null;
          $messages = null;
          if(Auth::user()->role === 3) {
@@ -135,7 +138,8 @@ class UserController extends Controller
          }
          return view('user.backoffice', [
             'team' => $team,
-            'messages' => $messages
+            'messages' => $messages,
+            'services' => $services
          ]);
       } else {
          abort(403);

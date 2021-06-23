@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Message;
+use App\Http\Helpers\Helpers;
 
 class AppController extends Controller
 {
@@ -50,5 +51,19 @@ class AppController extends Controller
       $message = Message::findOrFail($id);
       if($message->delete())
          return redirect()->back();
+   }
+
+   public function team($id)
+   {
+      $membre = User::findOrFail($id);
+      $services = Helpers::getServices();
+
+      $specs = str_split($membre->specs);
+
+      return view('app.team', [
+         'membre' => $membre,
+         'services' => $services,
+         'specs' => $specs
+      ]);
    }
 }

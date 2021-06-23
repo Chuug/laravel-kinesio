@@ -3,6 +3,7 @@
 @section('content')
    <div class="row">
       <div class="col-4 offset-4 bg-white shadow-sm p-5 mt-5">
+         <h4 class="text-center text-muted mb-3">- Connexion -</h4>
          <form action="{{ route('login') }}" method="POST">
             @csrf
             <input type="text" name="email" placeholder="Email" class="form-control my-2" value={{ old('email') }}>

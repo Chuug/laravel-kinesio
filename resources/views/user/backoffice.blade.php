@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', function() {
    }).done((rep) => {
       var calendarEl = document.getElementById('calendar');
       var calendar = new FullCalendar.Calendar(calendarEl, {
-         headerToolbar: { center: 'dayGridDay,timeGridWeek,dayGridMonth' },
+         headerToolbar: { center: 'timeGridWeek,dayGridMonth' },
          initialView: 'dayGridMonth',
          events: rep,
          buttonText: {
@@ -45,6 +45,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
 @section('content')
 <div class="container">
+   <div class="row">
+      <div class="col mt-3 p-3 bg-white shadow-sm">
+         <div class="row">
+            <div class="col text-center"><h4 class="text-muted">- Profil -</h4></div>
+         </div>
+         <div class="row">
+            <div class="col-6 text-center">
+               
+               <div class="team-img">
+                  <img src="/img/team/doctors-1.jpg" alt="Walter White" class="img-fluid shadow-sm">
+                  <h4 class="mt-3">{{ Auth::user()->prenom }} <span class="text-uppercase">{{ Auth::user()->nom }}</span></h4>
+               </div>
+            </div>
+            <div class="col-6">
+               <h5 class="mt-3">Spécialités</h5>
+               <ul>
+                  @foreach (str_split(Auth::user()->specs) as $spec)
+                  <li>{{ $services[$spec] }}</li>
+                  @endforeach
+               </ul>
+            </div>
+
+         </div>
+      </div>
+   </div>
+   @if(Auth::user()->role > 2)
    <div class="row">
       <div class="col mt-3 p-3 bg-white shadow-sm">
          <h4 class="float-start text-capitalize">équipe</h4>
@@ -73,12 +99,14 @@ document.addEventListener('DOMContentLoaded', function() {
          </table>
       </div>
    </div>
+   @endif
    <div class="row">
       <div class="col mt-4 p-3 bg-white shadow-sm">
          <span class="d-none kine-id">{{ Auth::user()->id }}</span>
          <div id="calendar"></div>
       </div>
    </div>
+   @if(Auth::user()->role > 2)
    <div class="row">
       <div class="col mt-4 p-3 bg-white shadow-sm">
          <h4>Messages</h4>
@@ -112,6 +140,7 @@ document.addEventListener('DOMContentLoaded', function() {
          </table>
       </div>
    </div>
+   @endif
 </div>
 
 @endsection

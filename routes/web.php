@@ -19,6 +19,7 @@ use App\Http\Controllers\ApiController;
 
 Route::get('/', [AppController::class, 'index'])->name('index');
 Route::post('/send-message', [AppController::class, 'sendMessage'])->name('app.sendMessage');
+Route::get('/equipe/{id}', [AppController::class, 'team'])->name('app.team');
 Route::delete('/app/destroy-message/{id}', [AppController::class, 'destroyMessage'])->name('app.destroyMessage');
 
 Route::get('/inscription', [UserController::class, 'register'])->name('register');
